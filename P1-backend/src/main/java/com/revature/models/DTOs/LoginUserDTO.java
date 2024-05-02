@@ -37,7 +37,7 @@ public class LoginUserDTO {
     }
 
     //toString
-    
+
     @Override
     public String toString() {
         return "LoginUserDTO{" +
