@@ -49,6 +49,6 @@ public class UserController {
         session.setAttribute("username", u.getUsername());
         session.setAttribute("role", u.getRole());
 
-        
+
     }
 }

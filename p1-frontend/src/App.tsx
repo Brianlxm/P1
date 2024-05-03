@@ -10,7 +10,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path='' element={<Login/>}/>
-
+         {/* <Route path='/collection' element={Collection}/>*/}
           <Route path='/register' element={<Register/>}/>
         </Routes>
       </BrowserRouter>
