@@ -2,6 +2,7 @@ import { useState } from "react"
 import { UserInterface } from "../../interfaces/UserInterface"
 import { Navigate, useNavigate } from "react-router-dom"
 import axios from "axios"
+import { toast } from "react-toastify"
 
 export const Register: React.FC = () => {
 
@@ -34,7 +35,10 @@ export const Register: React.FC = () => {
     const register = async () => {
         const response = await axios.post("http://localhost:8080/users", user)
 
-        alert(response.data) //"{user} was created!"
+        toast.success(response.data, {
+            position: 'top-right',
+            autoClose: 3000
+        }) //"{user} was created!"
 
         navigate("/")
     }
