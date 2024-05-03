@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.processing.Generated;
 
-@@Entity
+@Entity
 @Table(name = "reimbursement")
 @Component
 public class Reimbursement {
