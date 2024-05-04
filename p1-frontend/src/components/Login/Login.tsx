@@ -44,13 +44,10 @@ export const Login: React.FC = () => {
                 autoClose: 3000
             })
 
-            navigate("/catch")
+            navigate("/collection")
 
         })
-        .catch((error) => toast.error("Login Failed!", {
-            position: 'top-right',
-            autoClose: 3000
-        }))
+        .catch((error) => {alert(error.message)})
 
     }
 
@@ -64,10 +61,10 @@ export const Login: React.FC = () => {
                 <h1>Employee Reimbursement System</h1>
 
                 <div className="input-container">
-                    <input type="text" placeholder="username" name="username"/>
+                    <input type="text" placeholder="username" name="username" onChange={storeValues}/>
                 </div>
                 <div className="input-container">
-                    <input type="password" placeholder="password" name="password"/>
+                    <input type="password" placeholder="password" name="password" onChange={storeValues}/>
                 </div>
 
                 <button className="login-button" onClick={login}>Login</button>

@@ -34,13 +34,19 @@ export const Register: React.FC = () => {
     //function to send POST with user data to register user in the backend
     const register = async () => {
         const response = await axios.post("http://localhost:8080/users", user)
+        .then((response) => {
+        // alert
+        alert(response.data)
 
+        //toast
         toast.success(response.data, {
             position: 'top-right',
             autoClose: 3000
         }) //"{user} was created!"
 
         navigate("/")
+    })
+    .catch((error) => {alert(error.message)})
     }
 
 
