@@ -37,22 +37,25 @@ public class UserController {
     @PostMapping("/login")
     public ResponseEntity<?> loginUser(@RequestBody LoginUserDTO userDTO, HttpSession session){
         //get user object from the service
-        Optional<User> optionalUser = userService.loginUser(userDTO);
+        try {
+            Optional<User> optionalUser = userService.loginUser(userDTO);
 
-        if(optionalUser.isEmpty()){
-            return ResponseEntity.status(401).body("Login Failed!");
+            if (optionalUser.isEmpty()) {
+                return ResponseEntity.status(401).body("Login Failed!");
+            }
+
+            //if login succeeds store the userinfo in our session
+            User u = optionalUser.get();
+
+            //store the user info in our session
+            session.setAttribute("userId", u.getUserId());
+            session.setAttribute("username", u.getUsername());
+            session.setAttribute("role", u.getRole());
+
+            return ResponseEntity.ok(new OutgoingUserDTO(u.getUserId(), u.getUsername(), u.getRole()));
+        } catch (IllegalArgumentException e){
+            return ResponseEntity.status(400).body(e.getMessage());
         }
-
-        //if login succeeds store the userinfo in our session
-        User u = optionalUser.get();
-
-        //store the user info in our session
-        session.setAttribute("userId", u.getUserId());
-        session.setAttribute("username", u.getUsername());
-        session.setAttribute("role", u.getRole());
-
-        return ResponseEntity.ok(new OutgoingUserDTO(u.getUserId(), u.getUsername(), u.getRole()));
-
     }
 
     //delete user by Id

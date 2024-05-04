@@ -1,12 +1,15 @@
 package com.revature.services;
 
 import com.revature.daos.UserDAO;
+import com.revature.models.DTOs.LoginUserDTO;
 import com.revature.models.DTOs.RegisterUserDTO;
 import com.revature.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -42,6 +45,24 @@ public class UserService {
 
         User newUser = new User(userDTO.getFirstName(), userDTO.getLastName(), userDTO.getUsername(), userDTO.getPassword(), userDTO.getRole());
         return userDAO.save(newUser);
+
+    }
+
+    public Optional<User> loginUser(LoginUserDTO userDTO) throws IllegalArgumentException {
+        //TODO: validity checks
+        if (userDAO.findByUsername(userDTO.getUsername()).isEmpty()){
+            throw new IllegalArgumentException("Username does not exist");
+        }
+
+        //check username exists, check if password matches the username
+        User existingUser = userDAO.findByUsername(userDTO.getUsername()).get();
+        if (existingUser.getPassword().equals(userDTO.getPassword())){
+            return userDAO.findByUsername(userDTO.getUsername());
+        } else {
+            throw new IllegalArgumentException("Username and password don't match");
+        }
+        //if all checks pass, return a User OR null, and send it to the controller
+
 
     }
 }
