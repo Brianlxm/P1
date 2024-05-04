@@ -33,11 +33,15 @@ public class UserService {
         if(userDTO.getPassword().isBlank() || userDTO.getPassword() == null){
             throw new IllegalArgumentException("Password cannot be empty");
         }
-        try{
-            User newUser = new User(userDTO.getFirstName(), userDTO.getLastName(), userDTO.getUsername(), userDTO.getPassword(), userDTO.getRole());
-            return userDAO.save(newUser);
-        } catch (DataIntegrityViolationException e){
-            throw new IllegalArgumentException("Username already taken! Try a different one");
+
+        User existingUser = userDAO.findByUsername(userDTO.getUsername()).orElse(null);
+
+        if(existingUser != null){
+            throw new IllegalArgumentException("Username already exists!");
         }
+
+        User newUser = new User(userDTO.getFirstName(), userDTO.getLastName(), userDTO.getUsername(), userDTO.getPassword(), userDTO.getRole());
+        return userDAO.save(newUser);
+
     }
 }
