@@ -4,5 +4,6 @@ export interface ReimbursementInterface {
     description:string,
     amount:number,
     status:string
-    userId?: number
+    userId?:number
+    username?:string
 }

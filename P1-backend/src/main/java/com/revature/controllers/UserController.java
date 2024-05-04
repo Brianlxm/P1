@@ -1,6 +1,7 @@
 package com.revature.controllers;
 
 import com.revature.models.DTOs.LoginUserDTO;
+import com.revature.models.DTOs.OutgoingUserDTO;
 import com.revature.models.DTOs.RegisterUserDTO;
 import com.revature.models.User;
 import com.revature.services.UserService;
@@ -13,6 +14,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/users")
+@CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true")
 public class UserController {
 
     private UserService userService;
@@ -48,6 +50,8 @@ public class UserController {
         session.setAttribute("userId", u.getUserId());
         session.setAttribute("username", u.getUsername());
         session.setAttribute("role", u.getRole());
+
+        return ResponseEntity.ok(new OutgoingUserDTO(u.getUserId()), u.getUsername(), u.getRole());
 
 
     }

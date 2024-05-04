@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { ReimbursementInterface } from "../../interfaces/ReimbursementInterface"
 import axios from "axios"
+import { Reimbursement } from "../Reimbursements/Reimbursement"
 
 export const Collection: React.FC = () => {
 
@@ -39,7 +40,7 @@ export const Collection: React.FC = () => {
             {reimbursement.map((reimb, index) =>
                 <div>
                     <Reimbursement {...reimb}></Reimbursement>
-                    <button className="" onClick={() => deleteReimbursement(reimb.reimbID)}></button>
+                    <button className="" onClick={() => deleteReimbursement(reimb.reimbID)}>Delete</button>
                 </div>
             )}
         </div>

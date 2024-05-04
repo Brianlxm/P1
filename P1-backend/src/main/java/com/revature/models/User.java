@@ -3,6 +3,8 @@ package com.revature.models;
 import jakarta.persistence.*;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Entity
 @Table(name = "user")
 @Component
@@ -13,28 +15,35 @@ public class User {
     private int userId;
 
     @Column(nullable = false)
-    private string firstName;
+    private String firstName;
 
     @Column(nullable = false)
-    private string lastName;
+    private String lastName;
 
     @Column(nullable = false, unique = true)
-    private string username;
+    private String username;
 
     @Column(nullable = false)
-    private string password;
+    private String password;
 
     @Column(nullable = false)
-    private string role;
+    private String role;
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<Reimbursement> reimbursements;
 
     //boilerplate code ----------------------------
     //no-arg constructor
     public User() {
     }
 
-    //all arg constructor
-    public User(int userId, string firstName, string lastName, string username, string password, string role) {
-        this.userId = userId;
+    //constructors
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
+    public User(String firstName, String lastName, String username, String password, String role) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.username = username;
@@ -43,7 +52,6 @@ public class User {
     }
 
     //getters and setters
-
     public int getUserId() {
         return userId;
     }
@@ -52,56 +60,63 @@ public class User {
         this.userId = userId;
     }
 
-    public string getFirstName() {
+    public String getFirstName() {
         return firstName;
     }
 
-    public void setFirstName(string firstName) {
+    public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
 
-    public string getLastName() {
+    public String getLastName() {
         return lastName;
     }
 
-    public void setLastName(string lastName) {
+    public void setLastName(String lastName) {
         this.lastName = lastName;
     }
 
-    public string getUsername() {
+    public String getUsername() {
         return username;
     }
 
-    public void setUsername(string username) {
+    public void setUsername(String username) {
         this.username = username;
     }
 
-    public string getPassword() {
+    public String getPassword() {
         return password;
     }
 
-    public void setPassword(string password) {
+    public void setPassword(String password) {
         this.password = password;
     }
 
-    public string getRole() {
+    public String getRole() {
         return role;
     }
 
-    public void setRole(string role) {
+    public void setRole(String role) {
         this.role = role;
     }
 
-    //to-string
+    public List<Reimbursement> getReimbursements() {
+        return reimbursements;
+    }
+
+    public void setReimbursements(List<Reimbursement> reimbursements) {
+        this.reimbursements = reimbursements;
+    }
+
     @Override
     public String toString() {
         return "User{" +
                 "userId=" + userId +
-                ", firstName=" + firstName +
-                ", lastName=" + lastName +
-                ", username=" + username +
-                ", password=" + password +
-                ", role=" + role +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", role='" + role + '\'' +
                 '}';
     }
 }

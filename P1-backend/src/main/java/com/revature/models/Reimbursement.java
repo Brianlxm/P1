@@ -14,11 +14,11 @@ public class Reimbursement {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int reimbID;
 
-    private string description;
+    private String description;
 
     private double amount;
 
-    private string status;
+    private String status;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinColumn(name = "user_id")
@@ -30,15 +30,21 @@ public class Reimbursement {
     public Reimbursement() {
     }
 
-    public Reimbursement(int reimbID, string description, double amount, string status, User user) {
-        this.reimbID = reimbID;
+    public Reimbursement(String description, double amount, String status, User user) {
         this.description = description;
         this.amount = amount;
         this.status = status;
         this.user = user;
     }
 
-    //getter/setters
+    public Reimbursement(int reimbID, String description, double amount, String status, User user) {
+        this.reimbID = reimbID;
+        this.description = description;
+        this.amount = amount;
+        this.status = status;
+        this.user = user;
+    }
+//getter/setters
     public int getReimbID() {
         return reimbID;
     }
@@ -47,11 +53,11 @@ public class Reimbursement {
         this.reimbID = reimbID;
     }
 
-    public string getDescription() {
+    public String getDescription() {
         return description;
     }
 
-    public void setDescription(string description) {
+    public void setDescription(String description) {
         this.description = description;
     }
 
@@ -63,11 +69,11 @@ public class Reimbursement {
         this.amount = amount;
     }
 
-    public string getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(string status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 
@@ -79,14 +85,13 @@ public class Reimbursement {
         this.user = user;
     }
 
-    //to-string
     @Override
     public String toString() {
         return "Reimbursement{" +
                 "reimbID=" + reimbID +
-                ", description=" + description +
+                ", description='" + description + '\'' +
                 ", amount=" + amount +
-                ", status=" + status +
+                ", status='" + status + '\'' +
                 ", user=" + user +
                 '}';
     }
