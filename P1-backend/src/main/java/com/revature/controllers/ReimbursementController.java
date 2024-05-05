@@ -57,18 +57,18 @@ public class ReimbursementController {
     }
 
     //delete reimbursement
-    @DeleteMapping("/{reimbursementId")
-    public ResponseEntity<String> deleteReimbursement(@PathVariable int reimbursementId, HttpSession session){
-        //login chack
-        if(session.getAttribute(userId) == null){
-            return ResponseEntity.status(401).body("User not logged in")
-        }
-        //get userId from session
-        int userId = (int) session.getAttribute("userId");
-        try {
-            return ResponseEntity.ok(reimbursementService.deleteReimbursements(reimbursementId, userId));
-        } catch (Exception e){
-            return ResponseEntity.status(400).body(e.getMessage());
-        }
-    }
+//    @DeleteMapping("/{reimbursementId")
+//    public ResponseEntity<String> deleteReimbursement(@PathVariable int reimbursementId, HttpSession session){
+//        //login chack
+//        if(session.getAttribute("userId") == null){
+//            return ResponseEntity.status(401).body("User not logged in");
+//        }
+//        //get userId from session
+//        int userId = (int) session.getAttribute("userId");
+//        try {
+//            return ResponseEntity.ok(reimbursementService.deleteReimbursements(reimbursementId, userId));
+//        } catch (Exception e){
+//            return ResponseEntity.status(400).body(e.getMessage());
+//        }
+//    }
 }
