@@ -65,4 +65,13 @@ public class UserService {
 
 
     }
+
+    //delete user
+    public void deleteUser(int userId){
+
+        //TODO: validity checks
+        //make sure user to delete exists
+        //make sure deleter is not themselves
+        userDAO.deleteById(userId);
+    }
 }
