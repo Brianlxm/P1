@@ -39,4 +39,36 @@ public class ReimbursementController {
 
         return ResponseEntity.status(201).body(r.getUser().getUsername() + " created a new reimbursement");
     }
+
+    //get all reimbursements
+    @GetMapping
+    public ResponseEntity<?> getAllReimbursements(HttpSession session){
+
+        //login check
+        if(session.getAttribute("userId") == null){
+            return ResponseEntity.status(401).body("User not logged in!");
+        }
+
+        //get userId
+        int userId = (int) session.getAttribute("userId");
+
+        return ResponseEntity.ok(reimbursementService.getAllReimbursements(userId));
+
+    }
+
+    //delete reimbursement
+    @DeleteMapping("/{reimbursementId")
+    public ResponseEntity<String> deleteReimbursement(@PathVariable int reimbursementId, HttpSession session){
+        //login chack
+        if(session.getAttribute(userId) == null){
+            return ResponseEntity.status(401).body("User not logged in")
+        }
+        //get userId from session
+        int userId = (int) session.getAttribute("userId");
+        try {
+            return ResponseEntity.ok(reimbursementService.deleteReimbursements(reimbursementId, userId));
+        } catch (Exception e){
+            return ResponseEntity.status(400).body(e.getMessage());
+        }
+    }
 }
