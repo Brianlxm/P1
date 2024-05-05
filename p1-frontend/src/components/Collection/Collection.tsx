@@ -3,6 +3,7 @@ import { ReimbursementInterface } from "../../interfaces/ReimbursementInterface"
 import axios from "axios"
 import { Reimbursement } from "../Reimbursements/Reimbursement"
 import ReimbursementDropdown from "./ReimbursementDropdown"
+import "./Collection.css"
 
 export const Collection: React.FC = () => {
 
@@ -46,7 +47,7 @@ export const Collection: React.FC = () => {
             <ReimbursementDropdown onReimbursementsChange={handleReimbursementChange}/>
             <div className="collection-container">
             {reimbursement.map((reimb, index) =>
-                <div key={index}>
+                <div className="reimb" key={index}>
                     <Reimbursement {...reimb}></Reimbursement>
                     <button className="" onClick={() => deleteReimbursement(reimb.reimbID)}>Delete</button>
                 </div>

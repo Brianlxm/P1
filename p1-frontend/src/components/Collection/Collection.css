@@ -1,0 +1,11 @@
+.collection-container{
+    border: 4mm ridge rgba(211, 220, 50, .6);
+    margin:10px;
+    display:flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.reimb{
+    border: solid;
+}

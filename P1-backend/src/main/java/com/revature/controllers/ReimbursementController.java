@@ -34,6 +34,9 @@ public class ReimbursementController {
         //attach stored userId to the reimbursementDTO
         reimbursementDTO.setUserId((int) session.getAttribute("userId"));
 
+        //attach stored username
+        reimbursementDTO.setUsername((String) session.getAttribute("username"));
+
         //TODO: try/catch error handling
         Reimbursement r = reimbursementService.addReimbursement(reimbursementDTO);
 
