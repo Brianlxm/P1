@@ -71,4 +71,36 @@ public class ReimbursementService {
         }
         return outReimbursement;
     }
+
+    //getReimbursementsByStatus
+    public List<OutgoingReimbursementDTO> getReimbursementsByStatus(int userId, String status){
+
+        //list to hold return
+        List<OutgoingReimbursementDTO> outReimbursement = new ArrayList<>();
+
+        //list to hold all from db
+        List<Reimbursement> allReimbursements;
+
+        //check if manager or employee
+        User u = userDAO.findById(userId).get();
+        if(u.getRole().equals("manager")){
+            //manager gets all
+            //get all reimbursements from db
+            allReimbursements = reimbursementDAO.findByStatus(status);
+        } else {
+            allReimbursements = reimbursementDAO.findByUserUserIdAndStatus(userId, status);
+        }
+        for(Reimbursement r : allReimbursements){
+            OutgoingReimbursementDTO outR = new OutgoingReimbursementDTO(
+                    r.getReimbID(),
+                    r.getDescription(),
+                    r.getAmount(),
+                    r.getStatus(),
+                    r.getUser().getUserId());
+
+            outReimbursement.add(outR);
+        }
+        return outReimbursement;
+    }
+
 }

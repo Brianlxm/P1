@@ -37,7 +37,7 @@ public class ReimbursementController {
         //TODO: try/catch error handling
         Reimbursement r = reimbursementService.addReimbursement(reimbursementDTO);
 
-        return ResponseEntity.status(201).body(r.getUser().getUsername() + " created a new reimbursement");
+        return ResponseEntity.status(201).body(r.getUser().getUsername() + " submitted a new reimbursement");
     }
 
     //get all reimbursements
@@ -53,6 +53,21 @@ public class ReimbursementController {
         int userId = (int) session.getAttribute("userId");
 
         return ResponseEntity.ok(reimbursementService.getAllReimbursements(userId));
+
+    }
+
+    //get reimbursements by status
+    @GetMapping("/{status}")
+    public ResponseEntity<?> getReimbursementsByStatus(@PathVariable String status, HttpSession session){
+        //login check
+        if(session.getAttribute("userId") == null){
+            return ResponseEntity.status(401).body("User not logged in!");
+        }
+
+        //get userId
+        int userId = (int) session.getAttribute("userId");
+
+        return ResponseEntity.ok(reimbursementService.getReimbursementsByStatus(userId, status));
 
     }
 

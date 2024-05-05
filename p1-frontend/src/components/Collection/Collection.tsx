@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { ReimbursementInterface } from "../../interfaces/ReimbursementInterface"
 import axios from "axios"
 import { Reimbursement } from "../Reimbursements/Reimbursement"
+import ReimbursementDropdown from "./ReimbursementDropdown"
 
 export const Collection: React.FC = () => {
 
@@ -22,6 +23,11 @@ export const Collection: React.FC = () => {
 
     }
 
+    //handle reimbursementChange
+    const handleReimbursementChange = (newReimbursements: ReimbursementInterface[]) => {
+        setReimbursements(newReimbursements);
+    }
+
     //delete reimbursement by id
     const deleteReimbursement = async(reimbId:number|undefined) => {
 
@@ -36,13 +42,16 @@ export const Collection: React.FC = () => {
 
 
     return(
-        <div className="collection-container">
+        <div>
+            <ReimbursementDropdown onReimbursementsChange={handleReimbursementChange}/>
+            <div className="collection-container">
             {reimbursement.map((reimb, index) =>
-                <div>
+                <div key={index}>
                     <Reimbursement {...reimb}></Reimbursement>
                     <button className="" onClick={() => deleteReimbursement(reimb.reimbID)}>Delete</button>
                 </div>
             )}
+            </div>
         </div>
     )
 }
