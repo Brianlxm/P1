@@ -27,33 +27,42 @@ export const Login: React.FC = () => {
 
     //TODO: Login function
     const login = async () => {
+        try {
+            const response = await axios.post("http://localhost:8080/users/login", user, { withCredentials: true });
+            const userData = response.data;
     
-        //TODO: make this send actual POST request with user inputs
-        //with credentials to let us save/send user session info
-        const response = await axios.post("http://localhost:8080/users/login", user,
-        {withCredentials:true})
-        .then((response) => {
+            // Assuming your user data contains a field called 'role'
+            const userRole = userData.role;
+    
+            // Store user data in global state
+            state.userSessionData = userData;
 
-            //store user into in global state
-            state.userSessionData = response.data
-
-            console.log(state.userSessionData)
-
-            toast.success("Welcome, " + state.userSessionData.username, {
-                position: 'top-right',
-                autoClose: 3000
-            })
-
-            navigate("/collection")
-
-        })
-        .catch((error) => {alert(error.message)})
-
-    }
-
-
-
-
+            //welcome message
+            alert("Welcome, " + state.userSessionData.username)
+    
+            // Redirect based on user role
+            if (userRole === 'employee') {
+                navigate("/employee");
+            } else if (userRole === 'manager') {
+                navigate("/manager");
+            } else {
+                // Handle unexpected roles or errors
+                toast.error("Invalid user role", {
+                    position: 'top-right',
+                    autoClose: 3000
+                });
+            }
+        } catch (error:any) {
+            // Display error message from response body
+            if (error.response && error.response.data && error.response.data.error) {
+                alert("Error: " + error.response.data.error);
+            } else {
+                // Display generic error message
+                alert("Login Failed!");
+            }
+        }
+    };
+    
 
     return(
         <div className="login">
