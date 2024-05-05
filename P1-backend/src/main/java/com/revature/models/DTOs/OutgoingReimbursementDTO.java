@@ -12,16 +12,19 @@ public class OutgoingReimbursementDTO {
 
     private int userId;
 
+    private String username;
+
     //boilerplate ---------
     public OutgoingReimbursementDTO() {
     }
 
-    public OutgoingReimbursementDTO(int reimbID, String description, double amount, String status, int userId) {
+    public OutgoingReimbursementDTO(int reimbID, String description, double amount, String status, int userId, String username) {
         this.reimbID = reimbID;
         this.description = description;
         this.amount = amount;
         this.status = status;
         this.userId = userId;
+        this.username = username;
     }
 
     public int getReimbID() {
@@ -64,6 +67,14 @@ public class OutgoingReimbursementDTO {
         this.userId = userId;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
     @Override
     public String toString() {
         return "OutgoingReimbursementDTO{" +
@@ -72,6 +83,7 @@ public class OutgoingReimbursementDTO {
                 ", amount=" + amount +
                 ", status='" + status + '\'' +
                 ", userId=" + userId +
+                ", username='" + username + '\'' +
                 '}';
     }
 }

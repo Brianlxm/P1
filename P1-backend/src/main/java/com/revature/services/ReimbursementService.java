@@ -65,7 +65,8 @@ public class ReimbursementService {
                     r.getDescription(),
                     r.getAmount(),
                     r.getStatus(),
-                    r.getUser().getUserId());
+                    r.getUser().getUserId(),
+                    r.getUser().getUsername());
 
             outReimbursement.add(outR);
         }
@@ -96,7 +97,8 @@ public class ReimbursementService {
                     r.getDescription(),
                     r.getAmount(),
                     r.getStatus(),
-                    r.getUser().getUserId());
+                    r.getUser().getUserId(),
+                    r.getUser().getUsername());
 
             outReimbursement.add(outR);
         }
