@@ -104,4 +104,14 @@ public class UserService {
         }
         return listUsers;
     }
+
+    //updateUserRole
+    public User updateUserRole(int userId, String role){
+
+        User u = userDAO.findById(userId).get();
+
+        u.setRole(role);
+
+        return userDAO.save(u);
+    }
 }

@@ -83,4 +83,20 @@ public class UserController {
         }
         return ResponseEntity.ok(userService.getAllUsers());
     }
+
+    @PutMapping("/{userId}/{role}")
+    public ResponseEntity<String> updateUserRole(@PathVariable int userId, @PathVariable String role, HttpSession session){
+
+        if(session.getAttribute("userId") == null){
+            return ResponseEntity.status(401).body("User not logged in!");
+        }
+        String username = (String) session.getAttribute("username");
+        userService.updateUserRole(userId, role);
+        if (role.equals("manager")){
+            return ResponseEntity.status(200).body(username + " was promoted to manager");
+        }else{
+            return ResponseEntity.status(200).body(username + " was demoted to employee");
+        }
+
+    }
 }
