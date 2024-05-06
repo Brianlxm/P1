@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { ReimbursementInterface } from '../../interfaces/ReimbursementInterface';
+import "./ReimbursementDropdown.css"
 
 interface ReimbursementDropdownProps {
     onReimbursementsChange: (reimbursements: ReimbursementInterface[]) => void;
@@ -26,15 +27,17 @@ const ReimbursementDropdown: React.FC<ReimbursementDropdownProps> = ({ onReimbur
     };
 
     return (
-        <div>
-            <select value={selectedStatus} onChange={handleStatusChange}>
+        <div className="dropdown-container">
+            <select className="dropdown-select" value={selectedStatus} onChange={handleStatusChange}>
                 <option value="all">All</option>
                 <option value="pending">Pending</option>
                 <option value="approved">Approved</option>
                 <option value="denied">Denied</option>
             </select>
+            <div className="dropdown-arrow"></div>
         </div>
     );
+    
 };
 
 export default ReimbursementDropdown;

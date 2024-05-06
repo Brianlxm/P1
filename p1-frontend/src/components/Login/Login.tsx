@@ -4,6 +4,7 @@ import { UserInterface } from "../../interfaces/UserInterface"
 import axios from "axios"
 import { state } from "../../globalData/store"
 import { toast } from "react-toastify"
+import "./Login.css"
 
 export const Login: React.FC = () => {
 

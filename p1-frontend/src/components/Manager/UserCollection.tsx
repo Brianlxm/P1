@@ -72,18 +72,20 @@ export const UserCollection: React.FC = () => {
 
 
     return(
-        <div>
-            <h1>Users</h1>
+        <div className="user-collection-container">
+            <h1 className="user-collection-header">Users</h1>
             <div className="collection-container">
             {user.map((user, index) =>
-                <div className="user" key={index}>
+                <div className="user-container" key={index}>
                     <User {...user}></User>
+                    <div className="buttons">
                     <button className="" onClick={() => updateUserRole(user.userId)}>Change Role</button>
                     <button className="" onClick={() => deleteUser(user.userId)}>Delete</button>
+                    </div>
                 </div>
             )}
             </div>
-            <div>
+            <div className="buttons">
                 <button className="" onClick={() => {navigate("/manager")}}>Back to Dashboard</button>
                 {/*<button className="" onClick={() => {navigate("/")}}>Back to Login</button>*/}
             </div>

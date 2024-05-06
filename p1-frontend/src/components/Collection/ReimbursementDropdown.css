@@ -1,0 +1,25 @@
+.dropdown-container {
+    margin-bottom: 20px;
+  }
+  
+  .dropdown-select {
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+  }
+  
+  .dropdown-select:focus {
+    border-color: #007bff; /* Change border color on focus */
+  }
+  
+  /* Style dropdown arrow */
+  .dropdown-arrow {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none; /* Ensure the arrow doesn't interfere with dropdown functionality */
+  }
+  

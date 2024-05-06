@@ -6,7 +6,7 @@ export const Reimbursement: React.FC<ReimbursementInterface> = (reimb:Reimbursem
     return(
         <div className="reimbursement">
             <div className="field">
-                <label>Reimbursement Id: </label>
+                <label>Reimb. Id: </label>
                 <span>{reimb.reimbID}</span>
             </div>
             <div className="field">

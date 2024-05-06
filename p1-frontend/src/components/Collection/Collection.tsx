@@ -60,20 +60,24 @@ export const Collection: React.FC = () => {
 
     return(
         <div>
-            <h1>Reimbursements</h1>
+            <h1 className="collection-header">Reimbursements</h1>
             <ReimbursementDropdown onReimbursementsChange={handleReimbursementChange}/>
             <div className="collection-container">
             {reimbursement.map((reimb, index) =>
-                <div className="reimb" key={index}>
+                <div className="reimb-container" key={index}>
+                    <div className="reimb-details">
                     <Reimbursement {...reimb}></Reimbursement>
-                    <button className="" onClick={() => updateReimbursement(reimb.reimbID, "approved")}>Approve</button>
-                    <button className="" onClick={() => updateReimbursement(reimb.reimbID, "denied")}>Deny</button>
+                    </div>
+                    <div className="buttons">
+                    <button className="approve-button" onClick={() => updateReimbursement(reimb.reimbID, "approved")}>Approve</button>
+                    <button className="deny-button" onClick={() => updateReimbursement(reimb.reimbID, "denied")}>Deny</button>
                     {/*<button className="" onClick={() => deleteReimbursement(reimb.reimbID)}>Delete</button>*/}
+                </div>
                 </div>
             )}
             </div>
-            <div>
-                <button className="" onClick={() => {navigate("/manager")}}>Back to Dashboard</button>
+            <div className="buttons">
+                <button className="back-button" onClick={() => {navigate("/manager")}}>Back to Dashboard</button>
                 {/*<button className="" onClick={() => {navigate("/")}}>Back to Login</button>*/}
             </div>
         </div>

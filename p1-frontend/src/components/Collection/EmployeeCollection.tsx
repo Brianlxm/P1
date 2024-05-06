@@ -60,17 +60,17 @@ export const EmployeeCollection: React.FC = () => {
 
     return(
         <div>
-            <h1>Reimbursements</h1>
+            <h1 className="reimb-container">Reimbursements</h1>
             <ReimbursementDropdown onReimbursementsChange={handleReimbursementChange}/>
             <div className="collection-container">
             {reimbursement.map((reimb, index) =>
-                <div className="reimb" key={index}>
+                <div className="reimb-container" key={index}>
                     <Reimbursement {...reimb}></Reimbursement>
                     {/*<button className="" onClick={() => deleteReimbursement(reimb.reimbID)}>Delete</button>*/}
                 </div>
             )}
             </div>
-            <div>
+            <div className="buttons">
                 <button className="" onClick={() => {navigate("/employee")}}>Back to Dashboard</button>
                 {/*<button className="" onClick={() => {navigate("/")}}>Back to Login</button>*/}
             </div>
