@@ -6,6 +6,7 @@ import { Register } from './components/Login/Register';
 import { Employee } from './components/Employee/Employee';
 import { Manager } from './components/Manager/Manager';
 import { CreateReimbursement } from './components/Reimbursements/CreateReimbursement';
+import { Collection } from './components/Collection/Collection';
 
 function App() {
   return (
@@ -13,7 +14,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path='' element={<Login/>}/>
-         {/* <Route path='/collection' element={Collection}/>*/}
+          <Route path='/collection' element={<Collection/>}/>
           <Route path='/employee' element={<Employee/>}/>
           <Route path='/manager' element={<Manager/>}/>
           <Route path='/register' element={<Register/>}/>

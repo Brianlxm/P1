@@ -12,8 +12,12 @@ export const Manager: React.FC = () => {
     return (
         <div>
             <h1>Manager Dashboard</h1>
-            <button className="" onClick={() => {navigate("/collection")}}>See All Reimbursements</button>
-            <Collection />
+            <div>
+                <button className="" onClick={() => {navigate("/collection")}}>See All Reimbursements</button>
+            </div>
+            <div>
+                <button className="" onClick={() => {navigate("/")}}>Back to Login</button>
+            </div>
             {/* Additional manager-specific functionality can go here */}
         </div>
     );

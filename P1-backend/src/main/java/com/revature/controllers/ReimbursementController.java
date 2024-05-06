@@ -70,8 +70,12 @@ public class ReimbursementController {
         //get userId
         int userId = (int) session.getAttribute("userId");
 
-        return ResponseEntity.ok(reimbursementService.getReimbursementsByStatus(userId, status));
-
+        //see status
+        if (status.equals("all")){
+            return ResponseEntity.ok(reimbursementService.getAllReimbursements(userId));
+        } else {
+            return ResponseEntity.ok(reimbursementService.getReimbursementsByStatus(userId, status));
+        }
     }
 
     //delete reimbursement

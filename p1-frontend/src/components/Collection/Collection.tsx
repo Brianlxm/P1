@@ -4,6 +4,7 @@ import axios from "axios"
 import { Reimbursement } from "../Reimbursements/Reimbursement"
 import ReimbursementDropdown from "./ReimbursementDropdown"
 import "./Collection.css"
+import { useNavigate } from "react-router-dom"
 
 export const Collection: React.FC = () => {
 
@@ -12,6 +13,8 @@ export const Collection: React.FC = () => {
     useEffect(() => {
         getAllReimbursements()
     }, [])
+
+    const navigate = useNavigate()
 
     //GET request to servre to get all reimbursements
     const getAllReimbursements = async () => {
@@ -44,6 +47,7 @@ export const Collection: React.FC = () => {
 
     return(
         <div>
+            <h1>Reimbursements</h1>
             <ReimbursementDropdown onReimbursementsChange={handleReimbursementChange}/>
             <div className="collection-container">
             {reimbursement.map((reimb, index) =>
@@ -52,6 +56,10 @@ export const Collection: React.FC = () => {
                     <button className="" onClick={() => deleteReimbursement(reimb.reimbID)}>Delete</button>
                 </div>
             )}
+            </div>
+            <div>
+                <button className="" onClick={() => {navigate("/manager")}}>Back to Dashboard</button>
+                <button className="" onClick={() => {navigate("/")}}>Back to Login</button>
             </div>
         </div>
     )
