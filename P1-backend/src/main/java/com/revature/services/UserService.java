@@ -1,6 +1,7 @@
 package com.revature.services;
 
 import com.revature.daos.UserDAO;
+import com.revature.models.DTOs.ListUserDTO;
 import com.revature.models.DTOs.LoginUserDTO;
 import com.revature.models.DTOs.RegisterUserDTO;
 import com.revature.models.User;
@@ -9,6 +10,8 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -73,5 +76,26 @@ public class UserService {
         //make sure user to delete exists
         //make sure deleter is not themselves
         userDAO.deleteById(userId);
+    }
+
+    //get all users
+    public List<ListUserDTO> getAllUsers(){
+
+        //use DTO to not send password
+        List<ListUserDTO> listUsers = new ArrayList<>();
+
+        List<User> users = userDAO.findAll();
+
+        for(User u : users) {
+            ListUserDTO userDTO = new ListUserDTO(
+                    u.getUserId(),
+                    u.getUsername(),
+                    u.getFirstName(),
+                    u.getLastName(),
+                    u.getRole());
+
+            listUsers.add(userDTO);
+        }
+        return listUsers;
     }
 }

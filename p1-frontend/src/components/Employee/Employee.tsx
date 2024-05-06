@@ -16,7 +16,7 @@ export const Employee: React.FC = () => {
             {/*TODO: change user information*/}
             <div className="navbar">
                 <div>
-                    <button className="" onClick={() => {navigate("/collection")}}>See All Reimbursements</button>
+                    <button className="" onClick={() => {navigate("/employeecollection")}}>See All Reimbursements</button>
                 </div>
                 <div>
                     <button className="" onClick={() => {navigate("/createreimbursement")}}>Request New Reimbursement</button>

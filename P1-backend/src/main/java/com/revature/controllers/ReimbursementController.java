@@ -78,10 +78,25 @@ public class ReimbursementController {
         }
     }
 
+    //changing reimbursement status
+    @PutMapping("/{reimbursementId}/{status}")
+    public ResponseEntity<String> updateReimbursement(@PathVariable int reimbursementId, @PathVariable String status, HttpSession session){
+
+        if(session.getAttribute("userId") == null){
+            return ResponseEntity.status(401).body("User not logged in!");
+        }
+        reimbursementService.updateReimbursement(reimbursementId, status);
+        if (status.equals("approved")) {
+            return ResponseEntity.status(200).body("Reimbursement " + reimbursementId + " was approved!");
+        } else {
+            return ResponseEntity.status(200).body("Reimbursement " + reimbursementId + " was denied!");
+        }
+    }
+
     //delete reimbursement
-//    @DeleteMapping("/{reimbursementId")
+//    @DeleteMapping("/{reimbursementId}")
 //    public ResponseEntity<String> deleteReimbursement(@PathVariable int reimbursementId, HttpSession session){
-//        //login chack
+//        //login check
 //        if(session.getAttribute("userId") == null){
 //            return ResponseEntity.status(401).body("User not logged in");
 //        }

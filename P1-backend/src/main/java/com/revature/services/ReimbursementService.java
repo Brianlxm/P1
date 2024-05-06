@@ -105,6 +105,15 @@ public class ReimbursementService {
         return outReimbursement;
     }
 
-    
+    //update reimbursement
+    public Reimbursement updateReimbursement(int reimbursementId, String status){
+
+        //find the reimbursement
+        Reimbursement r = reimbursementDAO.findById(reimbursementId).get();
+
+        r.setStatus(status);
+
+        return reimbursementDAO.save(r);
+    }
 
 }

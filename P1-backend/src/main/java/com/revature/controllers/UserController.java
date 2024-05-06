@@ -1,5 +1,6 @@
 package com.revature.controllers;
 
+import com.revature.models.DTOs.ListUserDTO;
 import com.revature.models.DTOs.LoginUserDTO;
 import com.revature.models.DTOs.OutgoingUserDTO;
 import com.revature.models.DTOs.RegisterUserDTO;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -70,5 +72,15 @@ public class UserController {
         }catch (Exception e){
             return ResponseEntity.badRequest().body(e.getMessage());
         }
+    }
+
+    //get all users
+    @GetMapping
+    public ResponseEntity<?> getAllUsers(HttpSession session) {
+        //login check
+        if(session.getAttribute("userId") == null){
+            return ResponseEntity.status(401).body("User not logged in!");
+        }
+        return ResponseEntity.ok(userService.getAllUsers());
     }
 }

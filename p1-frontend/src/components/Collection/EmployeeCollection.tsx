@@ -6,7 +6,7 @@ import ReimbursementDropdown from "./ReimbursementDropdown"
 import "./Collection.css"
 import { useNavigate } from "react-router-dom"
 
-export const Collection: React.FC = () => {
+export const EmployeeCollection: React.FC = () => {
 
     const [reimbursement, setReimbursements] = useState<ReimbursementInterface[]>([])
 
@@ -66,14 +66,12 @@ export const Collection: React.FC = () => {
             {reimbursement.map((reimb, index) =>
                 <div className="reimb" key={index}>
                     <Reimbursement {...reimb}></Reimbursement>
-                    <button className="" onClick={() => updateReimbursement(reimb.reimbID, "approved")}>Approve</button>
-                    <button className="" onClick={() => updateReimbursement(reimb.reimbID, "denied")}>Deny</button>
                     {/*<button className="" onClick={() => deleteReimbursement(reimb.reimbID)}>Delete</button>*/}
                 </div>
             )}
             </div>
             <div>
-                <button className="" onClick={() => {navigate("/manager")}}>Back to Dashboard</button>
+                <button className="" onClick={() => {navigate("/employee")}}>Back to Dashboard</button>
                 {/*<button className="" onClick={() => {navigate("/")}}>Back to Login</button>*/}
             </div>
         </div>

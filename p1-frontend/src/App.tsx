@@ -7,6 +7,7 @@ import { Employee } from './components/Employee/Employee';
 import { Manager } from './components/Manager/Manager';
 import { CreateReimbursement } from './components/Reimbursements/CreateReimbursement';
 import { Collection } from './components/Collection/Collection';
+import { EmployeeCollection } from './components/Collection/EmployeeCollection';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path='/manager' element={<Manager/>}/>
           <Route path='/register' element={<Register/>}/>
           <Route path='/createreimbursement' element={<CreateReimbursement/>}/>
+          <Route path='/employeecollection' element={<EmployeeCollection/>}/>
         </Routes>
       </BrowserRouter>
     </div>
