@@ -70,11 +70,17 @@ public class UserService {
     }
 
     //delete user
-    public void deleteUser(int userId){
+    public void deleteUser(int userId) throws IllegalArgumentException{
 
         //TODO: validity checks
         //make sure user to delete exists
         //make sure deleter is not themselves
+        //TODO: make sure user is not a manager
+        User u = userDAO.findById(userId).get();
+        if(u.getRole().equals("manager")){
+            throw new IllegalArgumentException("Managers cannot be deleted");
+        }
+
         userDAO.deleteById(userId);
     }
 

@@ -1,4 +1,5 @@
 import { ReimbursementInterface } from "../../interfaces/ReimbursementInterface";
+import "./Reimbursement.css"
 
 export const Reimbursement: React.FC<ReimbursementInterface> = (reimb:ReimbursementInterface) => {
 

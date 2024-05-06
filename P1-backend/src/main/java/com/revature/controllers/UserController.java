@@ -70,7 +70,7 @@ public class UserController {
             userService.deleteUser(userId);
             return ResponseEntity.ok("User was deleted");
         }catch (Exception e){
-            return ResponseEntity.badRequest().body(e.getMessage());
+            return ResponseEntity.badRequest().body("Managers cannot be deleted");
         }
     }
 

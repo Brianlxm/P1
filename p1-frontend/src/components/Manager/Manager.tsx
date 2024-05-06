@@ -16,6 +16,9 @@ export const Manager: React.FC = () => {
                 <button className="" onClick={() => {navigate("/collection")}}>See All Reimbursements</button>
             </div>
             <div>
+                <button className="" onClick={() => {navigate("/usercollection")}}>See All Users</button>
+            </div>
+            <div>
                 <button className="" onClick={() => {navigate("/")}}>Back to Login</button>
             </div>
             {/* Additional manager-specific functionality can go here */}
