@@ -6,12 +6,12 @@ export const Reimbursement: React.FC<ReimbursementInterface> = (reimb:Reimbursem
     return(
         <div className="reimbursement">
             <div className="field">
-                <label>Username: </label>
-                <span>{reimb.username}</span>
+                <label>Reimbursement Id: </label>
+                <span>{reimb.reimbID}</span>
             </div>
             <div className="field">
-                <label>User Id: </label>
-                <span>{reimb.userId}</span>
+                <label>Username: </label>
+                <span>{reimb.username}</span>
             </div>
             <div className="field">
                 <label>Description: </label>
