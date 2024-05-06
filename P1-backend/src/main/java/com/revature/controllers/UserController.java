@@ -1,5 +1,6 @@
 package com.revature.controllers;
 
+import com.revature.daos.UserDAO;
 import com.revature.models.DTOs.ListUserDTO;
 import com.revature.models.DTOs.LoginUserDTO;
 import com.revature.models.DTOs.OutgoingUserDTO;
@@ -20,10 +21,12 @@ import java.util.Optional;
 public class UserController {
 
     private UserService userService;
+    private UserDAO userDAO;
 
     @Autowired
-    public UserController(UserService userService) {
+    public UserController(UserService userService, UserDAO userDAO) {
         this.userService = userService;
+        this.userDAO = userDAO;
     }
 
     @PostMapping
@@ -90,8 +93,11 @@ public class UserController {
         if(session.getAttribute("userId") == null){
             return ResponseEntity.status(401).body("User not logged in!");
         }
-        String username = (String) session.getAttribute("username");
-        String role = (String) session.getAttribute("role");
+        //TODO: get user info from userId not sessiondata
+        User u = userDAO.findById(userId).get();
+
+        String username = u.getUsername();
+        String role = u.getRole();
         userService.updateUserRole(userId, role);
         if (role.equals("employee")){
             return ResponseEntity.status(200).body(username + " was promoted to manager");

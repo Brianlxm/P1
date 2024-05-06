@@ -29,7 +29,7 @@ export const UserCollection: React.FC = () => {
 
 
     //delete reimbursement by id
-    const deleteReimbursement = async(userId:number|undefined) => {
+    const deleteUser = async(userId:number|undefined) => {
 
         const response = await axios.delete("http://localhost:8080/users/" + userId, {withCredentials:true})
         .then((response) => {
@@ -41,6 +41,19 @@ export const UserCollection: React.FC = () => {
         })
 
             //TODO: some catches for errors
+    }
+
+    //update user role
+    const updateUserRole = async(userId:number|undefined) => {
+
+        const response = await axios.put("http://localhost:8080/users/" + userId, null, {withCredentials:true})
+        .then((response) => {
+            alert(response.data)
+            getAllUsers();
+        })
+        .catch((error) => {
+            alert("Error occured")
+        })
     }
 
     //update reimbursement by id
@@ -65,7 +78,8 @@ export const UserCollection: React.FC = () => {
             {user.map((user, index) =>
                 <div className="user" key={index}>
                     <User {...user}></User>
-                    <button className="" onClick={() => deleteReimbursement(user.userId)}>Delete</button>
+                    <button className="" onClick={() => updateUserRole(user.userId)}>Change Role</button>
+                    <button className="" onClick={() => deleteUser(user.userId)}>Delete</button>
                 </div>
             )}
             </div>
