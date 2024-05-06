@@ -110,8 +110,11 @@ public class UserService {
 
         User u = userDAO.findById(userId).get();
 
-        u.setRole(role);
-
+        if(role.equals("manager")){
+            u.setRole("employee");
+        }else {
+            u.setRole("manager");
+        }
         return userDAO.save(u);
     }
 }
